@@ -3,10 +3,7 @@ package dev.robgleason.gameapi.rest;
 
 import dev.robgleason.gameapi.entity.Game;
 import dev.robgleason.gameapi.service.GameService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +32,19 @@ public class GameRestController {
             throw new RuntimeException("Game not found - " + gameId);
         }
         return game;
+    }
+
+    // add mapping for POST /games/{gamesId} - add new game
+
+    @PostMapping("/games")
+    public Game addGame(@RequestBody Game game) {
+        // also just incase they pass an id in JSON ... set id to 0
+        // this is to force a save of new item ... instead of update
+        game.setId(0);
+
+        Game dbGame = gameService.save(game);
+
+        return dbGame;
+
     }
 }
