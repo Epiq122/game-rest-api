@@ -34,7 +34,7 @@ public class GameRestController {
         return game;
     }
 
-    // add mapping for POST /games/{gamesId} - add new game
+    // add mapping for POST /games/ - add new game
 
     @PostMapping("/games")
     public Game addGame(@RequestBody Game game) {
@@ -46,5 +46,13 @@ public class GameRestController {
 
         return dbGame;
 
+    }
+
+    // add a mapping for PUT /games - update a game
+
+    @PutMapping("/games")
+    public Game updateGame(@RequestBody Game game) {
+        Game dbGame = gameService.save(game);
+        return dbGame;
     }
 }
