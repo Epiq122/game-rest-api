@@ -34,4 +34,30 @@ public class GameDAOJpaImpl implements GameDAO {
         return games;
 
     }
+
+    @Override
+    public Game findById(int id) {
+        // get game
+        Game game = entityManager.find(Game.class, id);
+
+        // return game
+        return game;
+    }
+
+    @Override
+    public Game save(Game game) {
+        // save game
+        Game dbGame = entityManager.merge(game);
+        // return the dbGame
+        return dbGame;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        // find game by id
+        Game game = entityManager.find(Game.class, id);
+        // remove the game
+        entityManager.remove(game);
+
+    }
 }
