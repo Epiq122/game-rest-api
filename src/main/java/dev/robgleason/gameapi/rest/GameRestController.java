@@ -55,4 +55,19 @@ public class GameRestController {
         Game dbGame = gameService.save(game);
         return dbGame;
     }
+
+    // add a mapping for DELETE /games/{gameId}
+
+    @DeleteMapping("/games/{gameId}")
+    public String deleteGame(@PathVariable int gameId) {
+        Game tempGame = gameService.findById(gameId);
+
+        // throw exception if null
+        if (tempGame == null) {
+            throw new RuntimeException("Game not found - " + gameId);
+        }
+        gameService.deleteById(gameId);
+        return "Deleted Game Id - " + gameId;
+    }
+
 }
