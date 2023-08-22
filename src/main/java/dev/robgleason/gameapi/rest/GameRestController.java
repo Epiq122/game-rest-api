@@ -1,8 +1,8 @@
 package dev.robgleason.gameapi.rest;
 
 
-import dev.robgleason.gameapi.dao.GameDAO;
 import dev.robgleason.gameapi.entity.Game;
+import dev.robgleason.gameapi.service.GameService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,18 +13,16 @@ import java.util.List;
 @RequestMapping("/api")
 public class GameRestController {
 
-    private GameDAO gameDAO;
-    // quick : inject game dao
+    private final GameService gameService;
 
-    public GameRestController(GameDAO gameDAO) {
-        this.gameDAO = gameDAO;
+    public GameRestController(GameService gameService) {
+        this.gameService = gameService;
     }
 
-
-    // expose "/games" and return a list of games
+// expose "/games" and return a list of games
 
     @GetMapping("/games")
     public List<Game> findAll() {
-        return gameDAO.findAll();
+        return gameService.findAll();
     }
 }
