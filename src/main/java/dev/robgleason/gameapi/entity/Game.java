@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 @Table(name = "game")
 public class Game {
 
-    // define fields
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,7 +23,6 @@ public class Game {
     private String email;
 
 
-    //define constructors
     public Game() {
     }
 
@@ -32,7 +31,7 @@ public class Game {
         this.gameDeveloper = gameDeveloper;
         this.email = email;
     }
-    // getters/setters
+
 
     public int getId() {
         return id;
@@ -67,7 +66,6 @@ public class Game {
     }
 
 
-    //tostring
     @Override
     public String toString() {
         return "Game{" +

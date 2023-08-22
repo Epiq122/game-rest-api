@@ -19,7 +19,6 @@ public class GameRestController {
         this.gameService = gameService;
     }
 
-// expose "/games" and return a list of games
 
     @GetMapping("/games")
     public List<Game> findAll() {

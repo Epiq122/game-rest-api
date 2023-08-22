@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class GameServiceImpl implements GameService {
 
-    // set up constructor injection
+
     private GameDAO gameDAO;
 
     @Autowired
